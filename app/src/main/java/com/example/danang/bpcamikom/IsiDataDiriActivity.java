@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.danang.bpcamikom.DataTransfer.DataDiriMhs;
@@ -34,11 +35,12 @@ public class IsiDataDiriActivity extends AppCompatActivity {
     private RadioButton rdSI;
     private RadioButton rdAktif;
     private RadioButton rdAlumni;
+    private Spinner spinnerJurusan;
 
     private FirebaseAuth mAuth;
     private DatabaseReference drDataMhs, drCheckDataMhs;
 
-    private String dataId, nama, nim, jurusan, tipe_mhs, tahun_lulus;
+    private String dataId, nama, nim, jurusan, tipe_mhs = "Alumni", tahun_lulus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +55,13 @@ public class IsiDataDiriActivity extends AppCompatActivity {
 
                 nama = edNamaMhs.getText().toString();
                 nim = edNimMhs.getText().toString();
-                rdTipeJurusan.getCheckedRadioButtonId();
-
                 tahun_lulus = edTahunLulus.getText().toString();
-                rdTipeMhs.getCheckedRadioButtonId();
+//                rdTipeJurusan.getCheckedRadioButtonId();
 
-                if (nama.isEmpty() || nim.isEmpty() || jurusan.isEmpty() || tipe_mhs.isEmpty() || tahun_lulus.isEmpty()) {
+
+//                rdTipeMhs.getCheckedRadioButtonId();
+
+                if (nama.isEmpty() || nim.isEmpty() || tahun_lulus.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Data belum lengkap", Toast.LENGTH_SHORT).show();
                 } else {
                     String idUser = mAuth.getCurrentUser().getUid();
@@ -66,17 +69,14 @@ public class IsiDataDiriActivity extends AppCompatActivity {
                     drCheckDataMhs.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.exists()) {
+//                            if (dataSnapshot.exists()) {
                                 //Jika data diri mahasiswa tersebut sudah ada
-                                Toast.makeText(getApplicationContext(), "Data sudah ada", Toast.LENGTH_SHORT).show();
-                            } else {
+//                                Toast.makeText(getApplicationContext(), "Data sudah ada", Toast.LENGTH_SHORT).show();
+//                            } else {
                                 //Jika data diri mahasiswa tersebut belum ada
                                 drDataMhs = FirebaseDatabase.getInstance().getReference("mahasiswa");
                                 inputData();
-                                Intent i = new Intent(IsiDataDiriActivity.this, DashboardMahasiswa.class);
-                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(i);
-                            }
+//                            }
                         }
 
                         @Override
@@ -126,9 +126,13 @@ public class IsiDataDiriActivity extends AppCompatActivity {
         btnRNamaMhs = findViewById(R.id.btnRNamaMhsReset);
         btnRNimMhs = findViewById(R.id.btnRNimReset);
         btnTahunLulusMhs = findViewById(R.id.btnRTahunLulusReset);
+        spinnerJurusan = findViewById(R.id.spinnerJurusan);
 
         mAuth = FirebaseAuth.getInstance();
         drDataMhs = FirebaseDatabase.getInstance().getReference("mahasiswa");
+        if (getIntent().hasExtra("mode") && getIntent().getStringExtra("mode").equalsIgnoreCase("edit")) {
+            btnInputData.setText("Update Data");
+        }
     }
 
     public void onRadioButtonClickedTipeMhs(View view) {
@@ -178,26 +182,31 @@ public class IsiDataDiriActivity extends AppCompatActivity {
 
         nama = edNamaMhs.getText().toString();
         nim = edNimMhs.getText().toString();
-        rdTipeJurusan.getCheckedRadioButtonId();
-
         tahun_lulus = edTahunLulus.getText().toString();
-        rdTipeMhs.getCheckedRadioButtonId();
+//        rdTipeJurusan.getCheckedRadioButtonId();
 
 
-        if (nama.isEmpty() || nim.isEmpty() || jurusan.isEmpty() || tipe_mhs.isEmpty() || tahun_lulus.isEmpty()) {
+//        rdTipeMhs.getCheckedRadioButtonId();
+
+
+        if (nama.isEmpty() || nim.isEmpty() || tahun_lulus.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Data harus lengkap", Toast.LENGTH_SHORT).show();
         } else {
             String idUser = mAuth.getCurrentUser().getUid();
-            String id = drDataMhs.push().getKey();
-            DataDiriMhs datadiri = new DataDiriMhs(id, nama, nim, jurusan, tipe_mhs, tahun_lulus);
+            DataDiriMhs datadiri = new DataDiriMhs(idUser, nama, nim, spinnerJurusan.getSelectedItem().toString(), tipe_mhs, tahun_lulus);
 
-            drDataMhs.child(idUser).child(id).setValue(datadiri).addOnCompleteListener(new OnCompleteListener<Void>() {
+            drDataMhs.child(idUser).setValue(datadiri).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         //JIka sukses input data
                         Toast.makeText(IsiDataDiriActivity.this, "Data Tersimpan", Toast.LENGTH_SHORT).show();
-
+                        if (getIntent().hasExtra("mode") && getIntent().getStringExtra("mode").equalsIgnoreCase("edit")) {
+                            finish();
+                        } else {
+                            Intent i = new Intent(IsiDataDiriActivity.this, DashboardMahasiswa.class);
+                            startActivity(i);
+                        }
                     } else {
                         //Jika gagal input data
                         Toast.makeText(IsiDataDiriActivity.this, "Gagal menyimpan data", Toast.LENGTH_SHORT).show();
@@ -211,34 +220,38 @@ public class IsiDataDiriActivity extends AppCompatActivity {
 
     public void onBackPressed() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(IsiDataDiriActivity.this);
-        builder.setTitle("Keluar");
-        builder.setMessage("Apakah anda akan keluar?");
+        if (getIntent().hasExtra("mode") && getIntent().getStringExtra("mode").equalsIgnoreCase("edit")) {
+            super.onBackPressed();
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(IsiDataDiriActivity.this);
+            builder.setTitle("Keluar");
+            builder.setMessage("Apakah anda akan keluar?");
 
-        builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
 
-                FirebaseAuth.getInstance().signOut();
-                Toast.makeText(getApplicationContext(), "Berhasil keluar", Toast.LENGTH_LONG).show();
-                finish();
-                Intent i = new Intent(IsiDataDiriActivity.this, LoginMhsActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-            }
-        });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    FirebaseAuth.getInstance().signOut();
+                    Toast.makeText(getApplicationContext(), "Berhasil keluar", Toast.LENGTH_LONG).show();
+                    finish();
+                    Intent i = new Intent(IsiDataDiriActivity.this, LoginMhsActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
 
-                dialog.cancel();
+                    dialog.cancel();
 
-            }
-        });
-        AlertDialog alert = builder.create();
-        alert.show();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
     }
 
 }

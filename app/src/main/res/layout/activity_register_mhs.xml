@@ -101,6 +101,23 @@
                 android:textColor="@color/colorWhite" />
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Jurusan"
+            android:textColor="#fff"
+            android:visibility="gone" />
+
+        <Spinner
+            android:id="@+id/spinnerJurusan"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:entries="@array/jurusan"
+            android:popupBackground="@color/colorPrimary"
+            android:theme="@style/spinnerTheme"
+            android:visibility="gone" />
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -121,6 +138,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/input_form"
                     android:drawableStart="@drawable/ic_lock_white_24dp"
+                    android:drawableLeft="@drawable/ic_lock_white_24dp"
                     android:drawablePadding="6dp"
                     android:gravity="center_vertical"
                     android:inputType="textPassword"

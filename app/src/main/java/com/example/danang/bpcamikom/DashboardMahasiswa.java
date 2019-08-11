@@ -10,13 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.danang.bpcamikom.DataTransfer.DataDiriMhs;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class DashboardMahasiswa extends AppCompatActivity {
 
@@ -34,31 +30,14 @@ public class DashboardMahasiswa extends AppCompatActivity {
         initialize();
 
         drDataMhs = FirebaseDatabase.getInstance().getReference("mahasiswa").child(mAuth.getCurrentUser().getUid());
-
-        drDataMhs.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot drmhsSnapshot : dataSnapshot.getChildren()) {
-                    DataDiriMhs datamhs = drmhsSnapshot.getValue(DataDiriMhs.class);
-                    dataId = datamhs.getId();
-                    txtCurrentUser.setText(mAuth.getCurrentUser().getEmail());
-
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        txtCurrentUser.setText(mAuth.getCurrentUser().getEmail());
 
         btnUpdateDataDiri.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(DashboardMahasiswa.this, UpdateDataDiriActivity.class);
+//                Intent i = new Intent(DashboardMahasiswa.this, UpdateDataDiriActivity.class);
+                Intent i = new Intent(DashboardMahasiswa.this, IsiDataDiriActivity.class);
+                i.putExtra("mode", "edit");
                 startActivity(i);
             }
         });

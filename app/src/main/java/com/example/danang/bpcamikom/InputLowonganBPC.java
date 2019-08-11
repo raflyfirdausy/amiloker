@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -22,7 +23,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class InputLowonganBPC extends AppCompatActivity {
@@ -42,6 +45,15 @@ public class InputLowonganBPC extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference drLowongan;
+
+    private CheckBox cbTeknikInformatika;
+    private CheckBox cbSistemInformasi;
+    private CheckBox cbTeknologiInformasi;
+    private CheckBox cbBisnisDigital;
+    private CheckBox cbIlmuKomunikasi;
+    private CheckBox cbBahasa;
+
+    private List<String> listJurusan = new ArrayList<>();
 
     private String LowonganId, JudulLowongan, KeteranganLowongan, NamaPerusahaan, EmailPerusahaan,
             LokasiPerusahaan, TeleponPerusahaan, Kualifikasi, JenisLowongan, BatasPendaftaran, Gaji;
@@ -128,6 +140,13 @@ public class InputLowonganBPC extends AppCompatActivity {
         btnRNoTelpPerusahaan = findViewById(R.id.btnRNoTelpPerusahaan);
         btnRKualifikasiPerusahaan = findViewById(R.id.btnRKualifikasiPerusahaan);
 
+        cbTeknikInformatika = findViewById(R.id.cbTeknikInformatika);
+        cbSistemInformasi = findViewById(R.id.cbSistemInformasi);
+        cbTeknologiInformasi = findViewById(R.id.cbTeknologiInformasi);
+        cbBisnisDigital = findViewById(R.id.cbBisnisDigital);
+        cbIlmuKomunikasi = findViewById(R.id.cbIlmuKomunikasi);
+        cbBahasa = findViewById(R.id.cbBahasa);
+
         mAuth = FirebaseAuth.getInstance();
         drLowongan = FirebaseDatabase.getInstance().getReference("lowongan");
 
@@ -186,6 +205,45 @@ public class InputLowonganBPC extends AppCompatActivity {
         datePickerDialog.show();
     }
 
+
+    private String getJurusan() {
+        listJurusan.clear();
+        if (cbSistemInformasi.isChecked()) {
+            listJurusan.add(cbSistemInformasi.getText().toString());
+        }
+
+        if (cbTeknikInformatika.isChecked()) {
+            listJurusan.add(cbTeknikInformatika.getText().toString());
+        }
+
+        if (cbTeknologiInformasi.isChecked()) {
+            listJurusan.add(cbTeknologiInformasi.getText().toString());
+        }
+
+        if (cbBisnisDigital.isChecked()) {
+            listJurusan.add(cbBisnisDigital.getText().toString());
+        }
+
+        if (cbIlmuKomunikasi.isChecked()) {
+            listJurusan.add(cbIlmuKomunikasi.getText().toString());
+        }
+
+        if (cbBahasa.isChecked()) {
+            listJurusan.add(cbBahasa.getText().toString());
+        }
+
+        String jurusan = "";
+        for (int i = 0; i < listJurusan.size(); i++) {
+            if (i != listJurusan.size() - 1) {
+                jurusan += listJurusan.get(i) + ",";
+            } else {
+                jurusan += listJurusan.get(i);
+            }
+        }
+
+        return jurusan;
+    }
+
     public void inputData() {
         JudulLowongan = edJudulLowongan.getText().toString();
         KeteranganLowongan = edKeteranganLowongan.getText().toString();
@@ -198,7 +256,7 @@ public class InputLowonganBPC extends AppCompatActivity {
         Gaji = edGaji.getText().toString();
         rdTipeLowongan.getCheckedRadioButtonId();
 
-        if (JudulLowongan.isEmpty() || KeteranganLowongan.isEmpty() || NamaPerusahaan.isEmpty() ||
+        if (getJurusan().equalsIgnoreCase("") || JudulLowongan.isEmpty() || KeteranganLowongan.isEmpty() || NamaPerusahaan.isEmpty() ||
                 EmailPerusahaan.isEmpty() || LokasiPerusahaan.isEmpty() || TeleponPerusahaan.isEmpty() || Kualifikasi.isEmpty() ||
                 Gaji.isEmpty() || JenisLowongan.isEmpty() || BatasPendaftaran.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Data lowongan harus lengkap", Toast.LENGTH_SHORT).show();
@@ -209,7 +267,7 @@ public class InputLowonganBPC extends AppCompatActivity {
             String idUser = mAuth.getCurrentUser().getUid();
             String id = drLowongan.push().getKey();
             Lowongan lowongan = new Lowongan(id, JudulLowongan, KeteranganLowongan, NamaPerusahaan,
-                    EmailPerusahaan, LokasiPerusahaan, TeleponPerusahaan, Kualifikasi, JenisLowongan, BatasPendaftaran, Gaji);
+                    EmailPerusahaan, LokasiPerusahaan, TeleponPerusahaan, Kualifikasi, JenisLowongan, BatasPendaftaran, Gaji, getJurusan());
             drLowongan.child(idUser).child(id).setValue(lowongan).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -217,7 +275,7 @@ public class InputLowonganBPC extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         //Jika sukses input data
                         Toast.makeText(InputLowonganBPC.this, "Data Tersimpan", Toast.LENGTH_SHORT).show();
-
+                        finish();
                     } else {
                         //Jika gagal input data
                         Toast.makeText(InputLowonganBPC.this, "Gagal menyimpan data", Toast.LENGTH_SHORT).show();

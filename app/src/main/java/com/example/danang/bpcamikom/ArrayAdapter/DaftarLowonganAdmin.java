@@ -32,13 +32,14 @@ public class DaftarLowonganAdmin extends ArrayAdapter {
 
         View listViewItemAdmin = inflaterAdmin.inflate(R.layout.daftar_lowongan_admin, null, true);
 
-        TextView txtDJudulLowongan, txtDNamaPerusahaan, txtDKeteranganLowongan, txtDGaji;
+        TextView txtDJudulLowongan, txtDNamaPerusahaan, txtDKeteranganLowongan, txtDGaji, txtJurusan;
 
         //Inisialisasi komponen
         txtDJudulLowongan = listViewItemAdmin.findViewById(R.id.txtDJudulLowongan);
         txtDNamaPerusahaan = listViewItemAdmin.findViewById(R.id.txtDNamaPerusahaan);
         txtDKeteranganLowongan = listViewItemAdmin.findViewById(R.id.txtDKeteranganLowongan);
         txtDGaji = listViewItemAdmin.findViewById(R.id.txtDGaji);
+        txtJurusan = listViewItemAdmin.findViewById(R.id.txtJurusan);
 
         Lowongan lowongan = daftarLowongan.get(position);
 
@@ -46,6 +47,7 @@ public class DaftarLowonganAdmin extends ArrayAdapter {
         txtDNamaPerusahaan.setText(lowongan.getNama_perusahaan());
         txtDKeteranganLowongan.setText(lowongan.getKeterangan_lowongan());
         txtDGaji.setText("Gaji Rp. " + lowongan.getGaji() + " / Bulan");
+        txtJurusan.setText(lowongan.getJurusan());
 
         return listViewItemAdmin;
 

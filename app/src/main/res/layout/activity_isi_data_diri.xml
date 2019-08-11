@@ -108,6 +108,24 @@
             android:gravity="center|center_vertical"
             android:orientation="vertical">
 
+            <Spinner
+                android:id="@+id/spinnerJurusan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/jurusan"
+                android:popupBackground="@color/colorPrimary"
+                android:theme="@style/spinnerTheme" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/input_form"
+            android:gravity="center|center_vertical"
+            android:orientation="vertical"
+            android:visibility="gone">
+
             <RadioGroup
                 android:id="@+id/rdTipeJurusan"
                 android:layout_width="wrap_content"
@@ -162,6 +180,16 @@
                 android:orientation="horizontal">
 
                 <RadioButton
+                    android:id="@+id/rdAlumni"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:buttonTint="@color/colorWhite"
+                    android:checked="true"
+                    android:onClick="onRadioButtonClickedTipeMhs"
+                    android:text="Alumni"
+                    android:textColor="@color/colorWhite" />
+
+                <RadioButton
                     android:id="@+id/rdAktif"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -170,14 +198,6 @@
                     android:text="Aktif"
                     android:textColor="@color/colorWhite" />
 
-                <RadioButton
-                    android:id="@+id/rdAlumni"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:buttonTint="@color/colorWhite"
-                    android:onClick="onRadioButtonClickedTipeMhs"
-                    android:text="Alumni"
-                    android:textColor="@color/colorWhite" />
             </RadioGroup>
 
         </LinearLayout>

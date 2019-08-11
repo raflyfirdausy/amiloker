@@ -305,6 +305,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/input_form"
             android:drawableLeft="@drawable/ic_rupiah"
             android:drawablePadding="8dp"
@@ -313,6 +314,65 @@
             android:textColor="@color/colorWhite"
             android:textColorHint="@color/colorPrimarySoft"
             app:isDecimal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="15dp"
+            android:text="JURUSAN :"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+
+        <CheckBox
+            android:id="@+id/cbSistemInformasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/putih"
+            android:text="Sistem informasi"
+            android:textColor="@color/putih" />
+
+        <CheckBox
+            android:id="@+id/cbTeknikInformatika"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/putih"
+            android:text="Teknik informatika"
+            android:textColor="@color/putih" />
+
+        <CheckBox
+            android:id="@+id/cbTeknologiInformasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/putih"
+            android:text="Teknologi informasi"
+            android:textColor="@color/putih" />
+
+        <CheckBox
+            android:id="@+id/cbBisnisDigital"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/putih"
+            android:text="Bisnis digital"
+            android:textColor="@color/putih" />
+
+        <CheckBox
+            android:id="@+id/cbIlmuKomunikasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/putih"
+            android:text="Ilmu komunikasi"
+            android:textColor="@color/putih" />
+
+        <CheckBox
+            android:id="@+id/cbBahasa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/putih"
+            android:text="Bahasa"
+            android:textColor="@color/putih" />
 
         <ProgressBar
             android:id="@+id/pgInputData"

@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.danang.bpcamikom.ArrayAdapter.DaftarLowonganAdmin;
 import com.example.danang.bpcamikom.DataTransfer.Lowongan;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ListLowonganUser extends AppCompatActivity {
@@ -24,8 +27,9 @@ public class ListLowonganUser extends AppCompatActivity {
     static String exUJudulLowongan, exUNamaPerusahaan, exUKeteranganLowongan, exUEmailPerusahaan,
             exULokasiPerusahaan, exUNoTelpPerusahaan, exUJenisLowongan, exUBatasPendaftaran, exUKualifikasi, exUGaji;
     private ListView lvShowLowongan;
-    private DatabaseReference drLowongan;
+    private DatabaseReference drLowongan, databaseReference;
     private List<Lowongan> daftarLowongan;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,25 +38,49 @@ public class ListLowonganUser extends AppCompatActivity {
 
         initialize();
 
-        drLowongan.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot userKeySnapshot : dataSnapshot.getChildren()) {
-                    for (DataSnapshot itemKeysnapshoot : userKeySnapshot.getChildren()) {
-                        Lowongan lowongan = itemKeysnapshoot.getValue(Lowongan.class);
-                        daftarLowongan.add(lowongan);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        databaseReference.child("mahasiswa")
+                .child(firebaseAuth.getCurrentUser().getUid())
+                .child("jurusan")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull final DataSnapshot dataSnapshot_) {
+                        if (dataSnapshot_.exists()) {
+                            drLowongan.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    daftarLowongan.clear();
+                                    for (DataSnapshot userKeySnapshot : dataSnapshot.getChildren()) {
+                                        for (DataSnapshot itemKeysnapshoot : userKeySnapshot.getChildren()) {
+                                            Lowongan lowongan = itemKeysnapshoot.getValue(Lowongan.class);
+                                            if (cekSesuaiJurusan(dataSnapshot_.getValue(String.class), lowongan.getJurusan())) {
+                                                daftarLowongan.add(lowongan);
+                                            }
+                                        }
+                                    }
+
+                                    DaftarLowonganAdmin adapter = new DaftarLowonganAdmin(ListLowonganUser.this, daftarLowongan);
+                                    lvShowLowongan.setAdapter(adapter);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Jurusan Tidak diketahui, silahkan lengkapi data terlebih dahulu", Toast.LENGTH_LONG).show();
+                        }
                     }
-                }
 
-                DaftarLowonganAdmin adapter = new DaftarLowonganAdmin(ListLowonganUser.this, daftarLowongan);
-                lvShowLowongan.setAdapter(adapter);
-            }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+                    }
+                });
 
         lvShowLowongan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -63,6 +91,17 @@ public class ListLowonganUser extends AppCompatActivity {
                         lowongan.getLokasi_perusahaan(), lowongan.getTelp_perusahaan(), lowongan.getJenis_lowongan(), lowongan.getBatas_pendaftaran(), lowongan.getKualifikasi(), lowongan.getGaji());
             }
         });
+    }
+
+    private boolean cekSesuaiJurusan(String jurusanMu, String jurusanData) {
+        List<String> list = new ArrayList<>(Arrays.asList(jurusanData.split(",")));
+        boolean ketemu = false;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equalsIgnoreCase(jurusanMu)) {
+                ketemu = true;
+            }
+        }
+        return ketemu;
     }
 
     private void initialize() {

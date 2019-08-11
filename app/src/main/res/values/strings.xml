@@ -12,4 +12,13 @@ Lembaga ini didirikan agar bisa mengkoordinir semua kegiatan pencarian kerja bag
 -Menguasai Pemrograman Java
 -Mengetahui Troubeshooting Komputer</string>
 
+    <string-array name="jurusan">
+        <item>Sistem informasi</item>
+        <item>Teknik informatika</item>
+        <item>Teknologi informasi</item>
+        <item>Bisnis digital</item>
+        <item>Ilmu komunikasi</item>
+        <item>Bahasa</item>
+    </string-array>
+
 </resources>

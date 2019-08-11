@@ -106,35 +106,39 @@ public class LoginMhsActivity extends AppCompatActivity {
                             //Jika email merupakan email admin BPC
                             Toast.makeText(getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
                         } else {
-                            //Cek apakah mahasiswa sudah mengisi data diri atau belum?
-                            String idUser = mAuth.getCurrentUser().getUid();
-                            drDataMhs = FirebaseDatabase.getInstance().getReference("mahasiswa").child(idUser);
-                            drDataMhs.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (!mAuth.getCurrentUser().isEmailVerified()) {
+                                Toast.makeText(getApplicationContext(), "Silahkan verifikasi Email Anda Terlebih Dahulu", Toast.LENGTH_LONG).show();
+                                mAuth.signOut();
+                            } else {
+//Cek apakah mahasiswa sudah mengisi data diri atau belum?
+                                String idUser = mAuth.getCurrentUser().getUid();
+                                drDataMhs = FirebaseDatabase.getInstance().getReference("mahasiswa").child(idUser);
+                                drDataMhs.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                    if (dataSnapshot.exists()) {
-                                        //Jika data diri mahasiswa sudah ada
-                                        Toast.makeText(getApplicationContext(), "Masuk ke akun berhasil", Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(LoginMhsActivity.this, DashboardMahasiswa.class);
-                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        startActivity(i);
-                                    } else {
-                                        //Jika belum maka mahasiswa diharuskan mengisi data diri terlebih dahulu
-                                        Intent i = new Intent(LoginMhsActivity.this, IsiDataDiriActivity.class);
-                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        startActivity(i);
+                                        if (dataSnapshot.exists()) {
+                                            //Jika data diri mahasiswa sudah ada
+                                            Toast.makeText(getApplicationContext(), "Masuk ke akun berhasil", Toast.LENGTH_SHORT).show();
+                                            Intent i = new Intent(LoginMhsActivity.this, DashboardMahasiswa.class);
+                                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            startActivity(i);
+                                        } else {
+                                            //Jika belum maka mahasiswa diharuskan mengisi data diri terlebih dahulu
+                                            Intent i = new Intent(LoginMhsActivity.this, IsiDataDiriActivity.class);
+                                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            startActivity(i);
+                                        }
                                     }
-                                }
 
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
 
-                                }
-                            });
+                                    }
+                                });
 
-                            showProgressDialogDataDiri();
-
+                                showProgressDialogDataDiri();
+                            }
                         }
 
                     } else {

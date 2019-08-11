@@ -3,19 +3,18 @@ package com.example.danang.bpcamikom;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.danang.bpcamikom.DataTransfer.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -27,9 +26,9 @@ public class RegisterMhsActivity extends AppCompatActivity {
     private EditText edRName, edREmail, edRPass, edRRepass;
     private Button btnRName, btnREmail, btnRpass, btnRRepass, btnRegister;
     private ProgressBar pgRegister;
-
-    private FirebaseAuth mAuth;
-    private DatabaseReference drUser;
+    private Spinner spinnerJurusan;
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
     private List<User> users;
     private String userId;
 
@@ -87,6 +86,7 @@ public class RegisterMhsActivity extends AppCompatActivity {
         btnREmail = findViewById(R.id.btnREmailReset);
         btnRpass = findViewById(R.id.btnRPasswordReset);
         btnRRepass = findViewById(R.id.btnRRePasswordReset);
+        spinnerJurusan = findViewById(R.id.spinnerJurusan);
         btnRegister = findViewById(R.id.btnRegister);
         pgRegister = findViewById(R.id.pgRegister);
         edRPass.setHint("Password");
@@ -94,8 +94,8 @@ public class RegisterMhsActivity extends AppCompatActivity {
         edRRepass.setHint("Re-type Password");
         edRRepass.setTextSize(18);
 
-        mAuth = FirebaseAuth.getInstance();
-        drUser = FirebaseDatabase.getInstance().getReference("users");
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         users = new ArrayList<User>();
     }
 
@@ -122,29 +122,35 @@ public class RegisterMhsActivity extends AppCompatActivity {
         } else {
             pgRegister.setVisibility(View.VISIBLE);
 
-            mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    pgRegister.setVisibility(View.GONE);
-                    if (task.isSuccessful()) {
-                        //Jika register berhasil
-                        if (TextUtils.isEmpty(userId)) {
-                            String id = drUser.push().getKey();
-                            User user = new User(id, nama, email, pass);
+            firebaseAuth.createUserWithEmailAndPassword(email, pass)
+                    .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            firebaseAuth.getCurrentUser().sendEmailVerification()
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            pgRegister.setVisibility(View.GONE);
+                                            Toast.makeText(getApplicationContext(), "Pendaftaran berhasil, silahkan cek email anda untuk aktivasi akun", Toast.LENGTH_LONG).show();
+                                            finish();
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            pgRegister.setVisibility(View.GONE);
+                                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                                        }
+                                    });
                         }
-                        Toast.makeText(getApplicationContext(), "Pengguna berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-                        resetForm();
-                    } else {
-                        //JIka berhasil tetapi pengguna sudah ada
-                        if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                            Toast.makeText(getApplicationContext(), "Pengguna telah terdaftar", Toast.LENGTH_SHORT).show();
-                        } else {
-                            //Jika Gagal
-                            Toast.makeText(getApplicationContext(), "Pendaftaraan Gagal", Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            pgRegister.setVisibility(View.GONE);
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                         }
-                    }
-                }
-            });
+                    });
         }
     }
 }
