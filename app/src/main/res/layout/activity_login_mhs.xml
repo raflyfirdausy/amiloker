@@ -83,6 +83,19 @@
                 android:textSize="14sp" />
         </android.support.design.widget.TextInputLayout>
 
+        <TextView
+            android:id="@+id/tvLupaPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="8dp"
+            android:text="Lupa Password ?"
+            android:textColor="@color/putih"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <ProgressBar
             android:id="@+id/pgLogin"
             android:layout_width="match_parent"

@@ -1,17 +1,23 @@
 package com.example.danang.bpcamikom;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,18 +29,23 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginMhsActivity extends AppCompatActivity {
 
+    AlertDialog.Builder dialog;
+    LayoutInflater inflater;
+    View dialogView;
     private Button btnLogin, btnRegister;
     private EditText edEmail, edPassword;
     private ProgressBar pgLogin;
     private FirebaseAuth mAuth;
     private DatabaseReference drDataMhs;
     private ProgressDialog progressDialog;
+    private TextView tvLupaPassword;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_mhs);
-
+        firebaseAuth = FirebaseAuth.getInstance();
         initialize();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +63,42 @@ public class LoginMhsActivity extends AppCompatActivity {
             }
         });
 
+        tvLupaPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog = new AlertDialog.Builder(LoginMhsActivity.this);
+                inflater = getLayoutInflater();
+                dialogView = inflater.inflate(R.layout.layout_lupas, null);
+                dialog.setView(dialogView);
+                dialog.setCancelable(true);
+                dialog.setTitle("Lupa Password");
+
+                final EditText etEmail = dialogView.findViewById(R.id.etEmail);
+
+                dialog.setPositiveButton("RESET", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        firebaseAuth.sendPasswordResetEmail(etEmail.getText().toString())
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(getApplicationContext(), "Silahkan Cek Email Anda", Toast.LENGTH_LONG).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                    }
+                });
+
+                dialog.setNegativeButton("BATAL", null);
+                dialog.show();
+            }
+        });
+
     }
 
     private void initialize() {
@@ -60,6 +107,7 @@ public class LoginMhsActivity extends AppCompatActivity {
         edPassword = findViewById(R.id.edPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnARegister);
+        tvLupaPassword = findViewById(R.id.tvLupaPassword);
         pgLogin = findViewById(R.id.pgLogin);
         mAuth = FirebaseAuth.getInstance();
         edPassword.setTextSize(18);
