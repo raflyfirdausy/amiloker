@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".UpdateDataDiriActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:drawableLeft="@drawable/registerlogo"
+            android:drawablePadding="8dp"
+            android:text="UPDATE DATA DIRI"
+            android:textColor="@color/colorWhite"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="15dp"
+            android:text="DATA MAHASISWA :"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/NamaMhs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/input_form"
+                android:drawableLeft="@drawable/ic_account_circle_white_24dp"
+                android:drawablePadding="8dp"
+                android:hint="Nama Lengkap"
+                android:inputType="text"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorPrimarySoft" />
+
+            <Button
+                android:id="@+id/btnRNamaMhsReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:background="@drawable/button_merah"
+                android:text="RESET"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/NimMhs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/input_form"
+                android:drawableLeft="@drawable/ic_email_white_24dp"
+                android:drawablePadding="8dp"
+                android:hint="NIM"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorPrimarySoft" />
+
+            <Button
+                android:id="@+id/btnRNimReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:background="@drawable/button_merah"
+                android:text="RESET"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/input_form"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/rdUpdateTipeJurusan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdUpdateTI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:buttonTint="@color/colorWhite"
+                    android:onClick="onRadioButtonClickedUpdateTipeJurusan"
+                    android:text="Teknik Informatika"
+                    android:textColor="@color/colorWhite" />
+
+                <RadioButton
+                    android:id="@+id/rdUpdateSI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:buttonTint="@color/colorWhite"
+                    android:onClick="onRadioButtonClickedUpdateTipeJurusan"
+                    android:text="Sistem Informasi"
+                    android:textColor="@color/colorWhite" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="15dp"
+            android:text="TIPE MAHASISWA :"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/input_form"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/rdUpdateTipeMhs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdAktif"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:buttonTint="@color/colorWhite"
+                    android:onClick="TipeMhs"
+                    android:text="Aktif"
+                    android:textColor="@color/colorWhite" />
+
+                <RadioButton
+                    android:id="@+id/rdAlumni"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:buttonTint="@color/colorWhite"
+                    android:onClick="TipeMhs"
+                    android:text="Alumni"
+                    android:textColor="@color/colorWhite" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/TahunLulusMhs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/input_form"
+                android:drawableLeft="@drawable/ic_school_black_24dp"
+                android:drawablePadding="8dp"
+                android:hint="Tahun Lulus"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorPrimarySoft" />
+
+            <Button
+                android:id="@+id/btnRTahunLulusReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:background="@drawable/button_merah"
+                android:text="RESET"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/pgRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnUpdateDaraDiri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_kuning"
+            android:text="UPDATE DATA DIRI"
+            android:textColor="@color/colorWhite" />
+
+    </LinearLayout>
+
+</ScrollView>

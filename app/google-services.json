@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "448546014178",
+    "firebase_url": "https://amiloker-2cb4a.firebaseio.com",
+    "project_id": "amiloker-2cb4a",
+    "storage_bucket": "amiloker-2cb4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448546014178:android:d901e5c4638f5623",
+        "android_client_info": {
+          "package_name": "com.example.danang.bpcamikom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "448546014178-i3guho5vq3neftsttr4v9hj92tgpvb7t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.danang.bpcamikom",
+            "certificate_hash": "843a7bf34a23780f0581a14b2b7dea09d0180c90"
+          }
+        },
+        {
+          "client_id": "448546014178-q8bvpumpip4pg9gu8vrfg6fdk4np085v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgFoKeP_6HEDchfF50FsTxh7mLMwnsihM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "448546014178-q8bvpumpip4pg9gu8vrfg6fdk4np085v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

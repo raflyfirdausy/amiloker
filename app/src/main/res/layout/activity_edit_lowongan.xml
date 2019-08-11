@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".RegisterMhsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:drawableLeft="@drawable/ic_edit_black_24dp"
+            android:drawablePadding="8dp"
+            android:text="EDIT DATA LOWONGAN"
+            android:textColor="@color/colorWhite"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="15dp"
+            android:text="DATA LOWONGAN :"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edUJudulLowongan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/input_form"
+            android:drawableLeft="@drawable/ic_subtitles_black_24dp"
+            android:drawablePadding="8dp"
+            android:hint="Judul Lowongan"
+            android:inputType="textMultiLine"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorPrimarySoft" />
+
+        <EditText
+            android:id="@+id/edUKeteranganLowongan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/input_form"
+            android:drawableLeft="@drawable/ic_subject_black_24dp"
+            android:drawablePadding="8dp"
+            android:hint="Keterangan Lowongan"
+            android:inputType="textMultiLine"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorPrimarySoft" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="15dp"
+            android:text="DATA PERUSAHAAN :"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edUNamaPerusahaan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/input_form"
+                android:drawableLeft="@drawable/ic_business_black_24dp"
+                android:drawablePadding="8dp"
+                android:hint="Nama Perusahaan"
+                android:inputType="text"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorPrimarySoft" />
+
+            <Button
+                android:id="@+id/btnRNamaPerusahaanReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:background="@drawable/button_merah"
+                android:text="RESET"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edUEmailPerusahaan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/input_form"
+                android:drawableLeft="@drawable/ic_email_white_24dp"
+                android:drawablePadding="8dp"
+                android:hint="E-mail Perusahaan"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorPrimarySoft" />
+
+            <Button
+                android:id="@+id/btnREmailPerusahaanReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:background="@drawable/button_merah"
+                android:text="RESET"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edULokasiPerusahaan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/input_form"
+                android:drawableLeft="@drawable/ic_place_black_24dp"
+                android:drawablePadding="8dp"
+                android:hint="ALAMAT Perusahaan"
+                android:inputType="textMultiLine"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorPrimarySoft" />
+
+            <Button
+                android:id="@+id/btnRLokasiPerusahaanReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:background="@drawable/button_merah"
+                android:text="RESET"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edUNoTelpPerusahaan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/input_form"
+                android:drawableLeft="@drawable/ic_local_phone_black_24dp"
+                android:drawablePadding="8dp"
+                android:hint="No. Telp Perusahaan"
+                android:inputType="number"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorPrimarySoft" />
+
+            <Button
+                android:id="@+id/btnRNoTelpPerusahaan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:background="@drawable/button_merah"
+                android:text="RESET"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="15dp"
+            android:text="KUALIFIKASI :"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/Umur"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:background="@drawable/input_form"-->
+        <!--android:drawableLeft="@drawable/ic_cake_black_24dp"-->
+        <!--android:drawablePadding="8dp"-->
+        <!--android:hint="Batas Umur"-->
+        <!--android:textColor="@color/colorWhite"-->
+        <!--android:textColorHint="@color/colorPrimarySoft" />-->
+
+        <!--<Button-->
+        <!--android:id="@+id/btnResetUmur"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="3dp"-->
+        <!--android:background="@drawable/button_merah"-->
+        <!--android:text="RESET"-->
+        <!--android:textColor="@color/colorWhite" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/Pendidikan"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:background="@drawable/input_form"-->
+        <!--android:drawableLeft="@drawable/ic_school_black_24dp"-->
+        <!--android:drawablePadding="8dp"-->
+        <!--android:hint="Syarat Pendidikan"-->
+        <!--android:textColor="@color/colorWhite"-->
+        <!--android:textColorHint="@color/colorPrimarySoft" />-->
+
+        <!--<Button-->
+        <!--android:id="@+id/btnResetPendidikan"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="3dp"-->
+        <!--android:background="@drawable/button_merah"-->
+        <!--android:text="RESET"-->
+        <!--android:textColor="@color/colorWhite" />-->
+        <!--</LinearLayout>-->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edUKualifikasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/input_form"
+                android:drawableLeft="@drawable/ic_school_black_24dp"
+                android:drawablePadding="8dp"
+                android:hint="Kualifikasi"
+                android:inputType="textMultiLine"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorPrimarySoft" />
+
+            <Button
+                android:id="@+id/btnRKualifikasiPerusahaan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:background="@drawable/button_merah"
+                android:text="RESET"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/input_form"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/rdUTipeLowongan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdUFullTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:buttonTint="@color/colorWhite"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="Full Time"
+                    android:textColor="@color/colorWhite" />
+
+                <RadioButton
+                    android:id="@+id/rdUFreelance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:buttonTint="@color/colorWhite"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="Freelance"
+                    android:textColor="@color/colorWhite" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edUBatasPendaftaran"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/input_form"
+                android:drawableLeft="@drawable/ic_date_range_black_24dp"
+                android:drawablePadding="8dp"
+                android:hint="Batas Pendaftaran"
+                android:inputType="textMultiLine"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorPrimarySoft" />
+
+            <Button
+                android:id="@+id/btnPilihBatasTanggalPendaftaran"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:background="@drawable/button_merah"
+                android:text="PILIH"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <com.aldoapps.autoformatedittext.AutoFormatEditText
+            android:id="@+id/edUGaji"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/input_form"
+            android:drawableLeft="@drawable/ic_rupiah"
+            android:drawablePadding="8dp"
+            android:hint="Gaji"
+            android:maxLength="12"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorPrimarySoft"
+            app:isDecimal="true" />
+
+        <ProgressBar
+            android:id="@+id/pgInputData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnEditLowongan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_merah"
+            android:text="UPDATE LOWONGAN"
+            android:textColor="@color/colorWhite" />
+
+
+    </LinearLayout>
+
+</ScrollView>

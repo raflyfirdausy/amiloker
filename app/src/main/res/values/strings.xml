@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">BPC AMIKOM</string>
+    <string name="warning">WARNING! Mengisi Data Diri Wajib Dilakukan.</string>
+    <string name="alamat">Jl. Letjen Pol Sumarto Watumas Purwanegara Purwokerto, Banyumas 53123</string>
+    <string name="tentang_bpc">Business Placement Center (BPC) STMIK AMIKOM Purwokerto merupakan lembaga Pusat Karir di dalam struktur Perguruan Tinggi STMIK AMIKOM Purwokerto berdasarkan SK Ketua Nomor 031/K.02/STMIK AMIKOM/IV/2010 Tertanggal 29 April 2010.
+
+Lembaga ini didirikan agar bisa mengkoordinir semua kegiatan pencarian kerja bagi lulusan baru, mengembangkan kegiatan civitas akademika dalam kerjasama dengan stakeholders (masyarakat dan dunia usaha) untuk mengintegrasikan kegiatan akademik dengan dunia kerja. Bersamaan dengan itu BPC harus mampu menyelenggarakan Bursa Kerja. Dengan berdirinya BPC ini diharapkan bisa memperpendek masa tunggu para alumni baru untuk memperoleh kerja yang diharapkan, selain itu juga BPC harus berkembang dan bisa menjadi jembatan antara STMIK AMIKOM Purwokerto dengan dunia usaha, serta mampu menyiapkan civitas akademika menghadapi dunia kerja bila sudah lulus.</string>
+
+    <string name="google_maps_key">AIzaSyAs6LhaqDz_65_poUL8HHbM9sPrgqPinUY</string>
+    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="text_kualifikasi">-Mampu mengoperasikan Microsoft Ofiice
+-Menguasai Pemrograman Java
+-Mengetahui Troubeshooting Komputer</string>
+
+</resources>

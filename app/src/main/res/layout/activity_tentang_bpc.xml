@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/colorPrimaryDark">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="BPC AMIKOM"
+            android:textColor="@color/colorWhite"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="Purwokerto"
+            android:textColor="@color/colorWhite"
+            android:textSize="30dp"
+            android:textStyle="bold|italic" />
+
+        <com.codesgood.views.JustifiedTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/tentang_bpc"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="Hubungi:"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/ic_local_phone_black_24dp"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="0281-623321"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/ic_whatsapp"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="085848888445"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/ic_email_white_24dp"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="amikom@amikompurwokerto.ac.id"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/ic_earth"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="amikompurwokerto.ac.id"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/ic_location_on_black_24dp"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="@string/alamat"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gedungamikom"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/gridListImageView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/logoamikom" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:gravity="right"
+        android:text="BPC AMIKOM "
+        android:textColor="@color/colorWhite"
+        android:textSize="25dp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="0dp"
+        android:gravity="center"
+        android:text="Purwokerto"
+        android:textColor="@color/colorWhite"
+        android:textSize="15dp"
+        android:textStyle="bold|italic" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnLoginMHS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_merah"
+            android:drawableLeft="@drawable/ic_arrow_forward_white_24dp"
+            android:text="LOGIN MAHASISWA"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnLoginBPC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_kuning"
+            android:drawableLeft="@drawable/ic_arrow_forward_white_24dp"
+            android:text="LOGIN BPC"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtAboutBPC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:text="Tentang BPC AMIKOM"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="15dp"
+        android:textStyle="italic" />
+
+</LinearLayout>
